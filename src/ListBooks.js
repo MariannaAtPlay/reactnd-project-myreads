@@ -10,9 +10,9 @@ const ListBooks = (props) => {
             </div>
             <div className="list-books-content">
                 <div>
-                    <Bookshelf name="Currently Reading" />
-                    <Bookshelf name="Want to Read" />
-                    <Bookshelf name="Read" />
+                    <Bookshelf name="Currently Reading" books={props.books}/>
+                    <Bookshelf name="Want to Read" books={props.books} />
+                    <Bookshelf name="Read" books={props.books} />
                 </div>
             </div>
             <div className="open-search">
