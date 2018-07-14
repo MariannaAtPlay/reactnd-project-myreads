@@ -18,7 +18,6 @@ class BooksApp extends React.Component {
 					books
 				});
 			});
-		//BooksAPI.getAll().then((books) => console.log(typeof books));
 	}
 
 	render() {
