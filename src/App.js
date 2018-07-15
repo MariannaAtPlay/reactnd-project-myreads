@@ -20,14 +20,15 @@ class BooksApp extends React.Component {
 			});
 	}
 
-	handleShelfChange = () => {
-		BooksAPI.getAll()
-			.then((books) => {
-				console.dir((books[0]));
-				this.setState({
-					books
-				});
-			});
+	handleShelfChange = (book, newShelf) => {
+		this.setState((prevState) => ({
+			books: prevState.books.map((currentBook) => {
+				if (currentBook.id === book.id) {
+					currentBook.shelf = newShelf;
+                }	
+                return currentBook;
+			})
+		}));
 	}
 
 	render() {

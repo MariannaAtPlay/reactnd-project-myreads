@@ -12,13 +12,17 @@ const Bookshelf = (props) => {
             <h2 className="bookshelf-title">{title}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    {booksToDisplay.map((book) => {
-                        return (
+                    {booksToDisplay.length > 0 ?
+                        booksToDisplay.map((book) => (
                             <li key={book.id}>
                                 <Book book={book} onShelfChange={onShelfChange}/>
                             </li>
-                        );
-                    })}
+                        )) : (
+                            <li>
+                                This shelf is currently empty
+                            </li>
+                        )
+                    }
                 </ol>
             </div>
         </div>
