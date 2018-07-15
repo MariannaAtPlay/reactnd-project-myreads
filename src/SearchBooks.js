@@ -11,28 +11,45 @@ class SearchBooks extends Component {
 
     handleInputChange = (e) => {
         const { booksOnShelves } = this.props;
+        const currentQuery = e.target.value;
 
         this.setState({
-            query: e.target.value
+            query: currentQuery
         });
-        BooksAPI
-            .search(this.state.query)
-            .then((response) => {
-                if (!response) return;
-
-                console.dir(response);
-                const updatedSearchResults = response.map((book) => {
-                    //check if this book is currently on a shelf; if so, assign a "shelf" property
-                    const i = booksOnShelves.findIndex((bookOnShelf) => bookOnShelf.id === book.id);
-                    if (i !== -1){
-                        book.shelf = booksOnShelves[i].shelf;
-                    }
-                    return book;
-                });
-                this.setState({
-                    searchResults: updatedSearchResults
-                });
+        
+        //in case currentQuery is empty string or undefined -> reset searchResults
+        if (!currentQuery) {
+            this.setState({ 
+                searchResults: [] 
             });
+        } else {
+            BooksAPI
+                .search(this.state.query)
+                .then((response) => {
+                    console.dir(response);
+                    if (!(response instanceof Array)) {
+                        this.setState({ 
+                            searchResults: [] 
+                        });
+                        return;
+                    };
+
+                    const updatedSearchResults = response.map((book) => {
+                        //check if this book is currently on a shelf; if so, assign a "shelf" property
+                        const i = booksOnShelves.findIndex((bookOnShelf) => bookOnShelf.id === book.id);
+                        if (i !== -1){
+                            book.shelf = booksOnShelves[i].shelf;
+                        }
+                        return book;
+                    });
+                    this.setState({
+                        searchResults: updatedSearchResults
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     }
 
     render() {

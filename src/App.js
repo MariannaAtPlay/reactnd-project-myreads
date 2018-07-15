@@ -21,14 +21,29 @@ class BooksApp extends React.Component {
 	}
 
 	handleShelfChange = (book, newShelf) => {
-		this.setState((prevState) => ({
-			books: prevState.books.map((currentBook) => {
-				if (currentBook.id === book.id) {
-					currentBook.shelf = newShelf;
-                }	
-                return currentBook;
-			})
-		}));
+		//check if this book is currently on a shelf
+		//if so, update its "shelf" property
+		//otherwise add it to state with an updated "shelf"
+		this.setState((prevState) => {
+			let updatedBooks;
+			const i = prevState.books.findIndex((bookOnShelf) => bookOnShelf.id === book.id);
+
+			if (i !== -1) {
+				updatedBooks = prevState.books.map((currentBook) => {
+					if (currentBook.id === book.id) {
+						currentBook.shelf = newShelf;
+					}	
+					return currentBook;
+				});
+			} else {
+				book.shelf = newShelf;
+				updatedBooks = [...prevState.books, book]
+			}
+
+			return {
+				books: updatedBooks 
+			}
+		});
 	}
 
 	render() {
