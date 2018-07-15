@@ -12,6 +12,7 @@ class SearchBooks extends Component {
     handleInputChange = (e) => {
         const { booksOnShelves } = this.props;
         const currentQuery = e.target.value;
+        console.log("query:", currentQuery);
 
         this.setState({
             query: currentQuery
@@ -23,6 +24,7 @@ class SearchBooks extends Component {
                 searchResults: [] 
             });
         } else {
+            console.log("ajax");
             BooksAPI
                 .search(this.state.query)
                 .then((response) => {
