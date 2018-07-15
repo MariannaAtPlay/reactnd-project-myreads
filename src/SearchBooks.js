@@ -1,18 +1,44 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
+import Book from './Book';
 
 class SearchBooks extends Component {
     state = {
-        query: ''
+        query: '',
+        searchResults: []
     }
 
     handleInputChange = (e) => {
+        const { booksOnShelves } = this.props;
+
         this.setState({
             query: e.target.value
         });
+        BooksAPI
+            .search(this.state.query)
+            .then((response) => {
+                if (!response) return;
+
+                console.dir(response);
+                const updatedSearchResults = response.map((book) => {
+                    //check if this book is currently on a shelf; if so, assign a "shelf" property
+                    const i = booksOnShelves.findIndex((bookOnShelf) => bookOnShelf.id === book.id);
+                    if (i !== -1){
+                        book.shelf = booksOnShelves[i].shelf;
+                    }
+                    return book;
+                });
+                this.setState({
+                    searchResults: updatedSearchResults
+                });
+            });
     }
 
     render() {
+        const { onShelfChange } = this.props;
+        const { query, searchResults } = this.state;
+
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -28,14 +54,26 @@ class SearchBooks extends Component {
                         */}
                         <input 
                             type="text" 
-                            value={this.state.query}
+                            value={query}
                             placeholder="Search by title or author"
                             onChange={this.handleInputChange}
                         />
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid"></ol>
+                    <ol className="books-grid">
+                        {searchResults.length > 0 ?
+                            searchResults.map((book) => (
+                                <li key={book.id}>
+                                    <Book book={book} onShelfChange={onShelfChange} />
+                                </li>
+                            )) : (
+                                <li>
+                                    No results found
+                                </li>
+                            )
+                        }
+                    </ol>
                 </div>
             </div>
         );
