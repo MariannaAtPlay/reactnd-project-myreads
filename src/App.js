@@ -20,10 +20,24 @@ class BooksApp extends React.Component {
 			});
 	}
 
+	handleShelfChange = () => {
+		BooksAPI.getAll()
+			.then((books) => {
+				console.dir((books[0]));
+				this.setState({
+					books
+				});
+			});
+	}
+
 	render() {
 		return (
 			<div className="app">
-				<Route exact path="/" render={() => <ListBooks books={this.state.books}/>} />
+				<Route exact path="/" render={() => <ListBooks 
+						books={this.state.books}
+						onShelfChange={this.handleShelfChange}
+					/>} 
+				/>
 				<Route path="/search" component={SearchBooks} />
 			</div>
 		);

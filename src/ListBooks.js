@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Bookshelf from './Bookshelf';
 
 const ListBooks = (props) => {
+    const { books, onShelfChange } = props;
+    
     return (
         <div className="list-books">
             <div className="list-books-title">
@@ -13,17 +15,20 @@ const ListBooks = (props) => {
                     <Bookshelf 
                         title="Currently Reading" 
                         shelf="currentlyReading"
-                        books={props.books}
+                        books={books}
+                        onShelfChange={onShelfChange}
                     />
                     <Bookshelf 
                         title="Want to Read" 
                         shelf="wantToRead"
-                        books={props.books} 
+                        books={books} 
+                        onShelfChange={onShelfChange}
                     />
                     <Bookshelf 
                         title="Read" 
                         shelf="read"
-                        books={props.books} 
+                        books={books} 
+                        onShelfChange={onShelfChange}
                     />
                 </div>
             </div>

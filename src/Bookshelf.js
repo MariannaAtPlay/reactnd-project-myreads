@@ -2,7 +2,7 @@ import React from 'react';
 import Book from './Book';
 
 const Bookshelf = (props) => {
-    const { title, shelf, books } = props;
+    const { title, shelf, books, onShelfChange } = props;
     const booksToDisplay = books.filter((book) => {
         return book.shelf === shelf;
     });
@@ -15,7 +15,7 @@ const Bookshelf = (props) => {
                     {booksToDisplay.map((book) => {
                         return (
                             <li key={book.id}>
-                                <Book book={book} />
+                                <Book book={book} onShelfChange={onShelfChange}/>
                             </li>
                         );
                     })}
