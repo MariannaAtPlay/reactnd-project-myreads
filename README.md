@@ -1,6 +1,6 @@
 # MyReads Project
 
-This is the final assessment project for Udacity's React Fundamentals course. This is a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. Each book has a control that lets you select the shelf for that book. When you select a different shelf, the book moves there. The main page also has a link to /search, a search page that allows you to find books to add to your library.
+This is the final assessment project for the first part of the [Udacity's React Nanodegree](https://www.udacity.com/course/react-nanodegree--nd019). This is a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. Each book has a control that lets you select the shelf for that book. When you select a different shelf, the book moves there. The main page also has a link to /search, a search page that allows you to find books to add to your library.
 
 The search page has a text input that may be used to find books. As the value of the text input changes, the books that match that query are displayed on the page, along with a control that lets you add the book to your library. When a book is on a bookshelf, it has the same state on both the main application page and the search page. When you navigate back to the main page from the search page, you should instantly see all of the selections you made on the search page in your library.
 
