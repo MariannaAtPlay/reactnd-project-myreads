@@ -9,7 +9,9 @@ Try searching for "React" to discover some useful books ;)
 ## TL;DR
 
 To give it a try:
+Visit it on the web: https://MariannaAtPlay.github.io/reactnd-project-myreads
 
+Or install it locally:
 * install all project dependencies with `npm install`
 * start the app with `npm start`
 
