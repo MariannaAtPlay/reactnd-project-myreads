@@ -9,13 +9,19 @@ Try searching for "React" to discover some useful books ;)
 ## TL;DR
 
 To give it a try:
-Visit it on the web: https://MariannaAtPlay.github.io/reactnd-project-myreads
+
+Visit it on the web: 
+* https://MariannaAtPlay.github.io/reactnd-project-myreads
 
 Or install it locally:
 * install all project dependencies with `npm install`
 * start the app with `npm start`
 
-## Important
+![Home page](https://video.udacity-data.com/topher/2017/May/590c0f26_react-project1-b/react-project1-b.png)
+
+![Search page](https://video.udacity-data.com/topher/2017/December/5a3c22b9_screen-shot-2017-12-21-at-1.06.59-pm/screen-shot-2017-12-21-at-1.06.59-pm.png)
+
+## Important - available search terms
 The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
 
 ## Create React App
